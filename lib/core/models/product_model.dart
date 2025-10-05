@@ -20,6 +20,7 @@ class ProductModel {
   final num ratingCount = 0;
   final int unitAmount;
   final List<ReviewModel> reviews;
+  final String categoryId;
   ProductModel({
     required this.name,
     required this.code,
@@ -33,6 +34,7 @@ class ProductModel {
     required this.price,
     required this.isOrganic,
     required this.isFeatured,
+    required this.categoryId,
     this.imageUrl,
   });
 
@@ -60,6 +62,7 @@ class ProductModel {
       price: json['price'],
       isOrganic: json['isOrganic'],
       isFeatured: json['isFeatured'],
+      categoryId: json['categoryId'] ?? 'food',
       imageUrl: json['imageUrl'],
     );
   }
@@ -74,6 +77,7 @@ class ProductModel {
       expirationsMonths: expirationsMonths,
       numberOfCalories: numberOfCalories,
       unitAmount: unitAmount,
+      categoryId: categoryId,
       isOrganic: isOrganic,
       isFeatured: isFeatured,
       imageUrl: imageUrl,
@@ -87,6 +91,7 @@ class ProductModel {
       'description': description,
       'price': price,
       'isFeatured': isFeatured,
+      'categoryId': categoryId,
       'imageUrl': imageUrl,
       'expirationsMonths': expirationsMonths,
       'numberOfCalories': numberOfCalories,

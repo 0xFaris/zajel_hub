@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zajel_hub/constants.dart';
 import 'package:zajel_hub/core/cubits/products_cubit/products_cubit.dart';
 import 'package:zajel_hub/features/home/presentation/views/widgets/best_selling_header.dart';
+import 'package:zajel_hub/features/home/presentation/views/widgets/category_filter_chips.dart';
 import 'package:zajel_hub/features/home/presentation/views/widgets/custom_home_app_bar.dart';
 import 'package:zajel_hub/features/home/presentation/views/widgets/featured_list.dart';
 import '../../../../../core/widgets/search_text_field.dart';
@@ -16,6 +17,8 @@ class HomeViewBody extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
+  String? selectedCategory;
+
   @override
   void initState() {
     context.read<ProductsCubit>().getBestSellingroducts();
@@ -24,26 +27,36 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
             child: Column(
               children: [
-                SizedBox(height: kTopPaddding),
-                CustomHomeAppBar(),
-                SizedBox(height: 16),
-                SearchTextField(),
-                SizedBox(height: 12),
-                FeaturedList(),
-                SizedBox(height: 12),
-                BestSellingHeader(),
-                SizedBox(height: 8),
+                const SizedBox(height: kTopPaddding),
+                const CustomHomeAppBar(),
+                const SizedBox(height: 16),
+                const SearchTextField(),
+                const SizedBox(height: 12),
+                const FeaturedList(),
+                const SizedBox(height: 12),
+                CategoryFilterChips(
+                  selectedCategory: selectedCategory,
+                  onCategorySelected: (categoryId) {
+                    setState(() {
+                      selectedCategory = categoryId;
+                    });
+                    context.read<ProductsCubit>().filterByCategory(categoryId);
+                  },
+                ),
+                const SizedBox(height: 12),
+                const BestSellingHeader(),
+                const SizedBox(height: 8),
               ],
             ),
           ),
-          ProductsGridViewBlocBuilder(),
+          const ProductsGridViewBlocBuilder(),
         ],
       ),
     );

@@ -10,12 +10,18 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   final ProductsRepo productsRepo;
   int productsLength = 0;
+  String? selectedCategory;
+  List<ProductEntity> allProducts = [];
+
   Future<void> getProducts() async {
     emit(ProductsLoading());
     final result = await productsRepo.getProducts();
     result.fold(
       (failure) => emit(ProductsFailure(failure.message)),
-      (products) => emit(ProductsSuccess(products)),
+      (products) {
+        allProducts = products;
+        emit(ProductsSuccess(products));
+      },
     );
   }
 
@@ -26,7 +32,26 @@ class ProductsCubit extends Cubit<ProductsState> {
       products,
     ) {
       productsLength = products.length;
+      allProducts = products;
       emit(ProductsSuccess(products));
     });
+  }
+
+  void filterByCategory(String? categoryId) {
+    selectedCategory = categoryId;
+    if (allProducts.isEmpty) {
+      return;
+    }
+
+    if (categoryId == null) {
+      // Show all products
+      emit(ProductsSuccess(allProducts));
+    } else {
+      // Filter products by category
+      final filteredProducts = allProducts
+          .where((product) => product.categoryId == categoryId)
+          .toList();
+      emit(ProductsSuccess(filteredProducts));
+    }
   }
 }

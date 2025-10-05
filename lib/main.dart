@@ -6,6 +6,7 @@ import 'package:zajel_hub/core/helper_functions/on_generate_routes.dart';
 import 'package:zajel_hub/core/services/get_it_service.dart';
 import 'package:zajel_hub/core/services/shared_preferences_singleton.dart';
 import 'package:zajel_hub/core/utils/app_colors.dart';
+import 'package:zajel_hub/seed_data.dart';
 import 'firebase_options.dart';
 import 'core/services/custom_bloc_observer.dart';
 import 'features/splash/presentation/views/splash_view.dart';
@@ -17,20 +18,8 @@ void main() async {
   Bloc.observer = CustomBlocObserver();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Prefs.init();
-
   setupGetit();
   runApp(const FruitHub());
-}
-
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World'))),
-    );
-  }
 }
 
 class FruitHub extends StatelessWidget {

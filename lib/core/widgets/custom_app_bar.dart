@@ -26,7 +26,7 @@ AppBar buildAppBar(
         onTap: () {
           Navigator.pop(context);
         },
-        child: const Icon(Icons.arrow_back_ios_new),
+        child: const Icon(Icons.arrow_forward_ios),
       ),
     ),
     centerTitle: true,

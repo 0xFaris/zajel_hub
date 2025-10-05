@@ -11,6 +11,7 @@ ProductEntity getDummyProduct() {
     expirationsMonths: 6,
     numberOfCalories: 100,
     unitAmount: 1,
+    categoryId: 'food',
     isOrganic: true,
     isFeatured: true,
     imageUrl: null,

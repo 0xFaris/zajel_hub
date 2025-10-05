@@ -17,6 +17,7 @@ class ProductEntity extends Equatable {
   final num ratingCount = 0;
   final int unitAmount;
   final List<ReviewEntity> reviews;
+  final String categoryId;
   ProductEntity({
     required this.name,
     required this.code,
@@ -26,6 +27,7 @@ class ProductEntity extends Equatable {
     required this.expirationsMonths,
     required this.numberOfCalories,
     required this.unitAmount,
+    required this.categoryId,
     this.isOrganic = false,
     required this.isFeatured,
     this.imageUrl,
