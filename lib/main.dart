@@ -6,7 +6,6 @@ import 'package:zajel_hub/core/helper_functions/on_generate_routes.dart';
 import 'package:zajel_hub/core/services/get_it_service.dart';
 import 'package:zajel_hub/core/services/shared_preferences_singleton.dart';
 import 'package:zajel_hub/core/utils/app_colors.dart';
-import 'package:zajel_hub/seed_data.dart';
 import 'firebase_options.dart';
 import 'core/services/custom_bloc_observer.dart';
 import 'features/splash/presentation/views/splash_view.dart';
@@ -19,11 +18,11 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Prefs.init();
   setupGetit();
-  runApp(const FruitHub());
+  runApp(const ZagelHub());
 }
 
-class FruitHub extends StatelessWidget {
-  const FruitHub({super.key});
+class ZagelHub extends StatelessWidget {
+  const ZagelHub({super.key});
 
   @override
   Widget build(BuildContext context) {
